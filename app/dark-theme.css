@@ -1,0 +1,200 @@
+/* Dark mode harmonization for legacy neutral / white-opacity utilities */
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Text — WCAG-friendly on navy background (~oklch 0.11) */
+.dark .text-neutral-900,
+.dark .hover\:text-neutral-900:hover,
+.dark .group:hover .group-hover\:text-neutral-900 {
+  color: oklch(0.97 0.006 265);
+}
+
+.dark .text-neutral-800 {
+  color: oklch(0.92 0.01 265);
+}
+
+.dark .text-neutral-700,
+.dark .hover\:text-neutral-700:hover {
+  color: oklch(0.86 0.015 265);
+}
+
+.dark .text-neutral-600,
+.dark .hover\:text-neutral-600:hover,
+.dark .group:hover .group-hover\:text-neutral-600 {
+  color: oklch(0.78 0.022 265);
+}
+
+.dark .text-neutral-500 {
+  color: oklch(0.68 0.028 265);
+}
+
+.dark .text-neutral-400 {
+  color: oklch(0.58 0.03 265);
+}
+
+.dark .font-bold.text-neutral-900,
+.dark .font-semibold.text-neutral-700 {
+  color: oklch(0.97 0.006 265);
+}
+
+/* Borders */
+.dark .border-neutral-200\/80,
+.dark .border-neutral-200\/70 {
+  border-color: oklch(1 0 0 / 12%);
+}
+
+.dark .border-neutral-300\/80,
+.dark .border-neutral-300\/70,
+.dark .border-neutral-300\/60 {
+  border-color: oklch(1 0 0 / 14%);
+}
+
+.dark .border-dashed.border-neutral-300\/80,
+.dark .border-dashed.border-neutral-300\/70,
+.dark .border-dashed.border-neutral-300\/60 {
+  border-color: oklch(1 0 0 / 18%);
+}
+
+.dark .bg-neutral-300\/70 {
+  background-color: oklch(1 0 0 / 12%);
+}
+
+/* Frosted white surfaces → dark glass tints */
+.dark .bg-white\/20 {
+  background-color: rgb(255 255 255 / 4%);
+}
+
+.dark .bg-white\/25 {
+  background-color: rgb(255 255 255 / 5%);
+}
+
+.dark .bg-white\/30,
+.dark .hover\:bg-white\/30:hover {
+  background-color: rgb(255 255 255 / 6%);
+}
+
+.dark .bg-white\/35 {
+  background-color: rgb(255 255 255 / 7%);
+}
+
+.dark .bg-white\/40 {
+  background-color: rgb(255 255 255 / 8%);
+}
+
+.dark .bg-white\/45 {
+  background-color: rgb(255 255 255 / 9%);
+}
+
+.dark .bg-white\/50,
+.dark .hover\:bg-white\/50:hover {
+  background-color: rgb(255 255 255 / 10%);
+}
+
+.dark .bg-white\/55,
+.dark .hover\:bg-white\/55:hover {
+  background-color: rgb(255 255 255 / 11%);
+}
+
+.dark .bg-white\/65 {
+  background-color: rgb(255 255 255 / 12%);
+}
+
+.dark .bg-white\/70,
+.dark .focus-visible\:bg-white\/70:focus-visible {
+  background-color: rgb(255 255 255 / 14%);
+}
+
+.dark .bg-white\/75 {
+  background-color: rgb(255 255 255 / 15%);
+}
+
+.dark .bg-white\/80,
+.dark .hover\:bg-white\/80:hover {
+  background-color: rgb(255 255 255 / 16%);
+}
+
+.dark .border-white\/50 {
+  border-color: rgb(255 255 255 / 10%);
+}
+
+.dark .border-white\/60 {
+  border-color: rgb(255 255 255 / 12%);
+}
+
+.dark .border-white\/70 {
+  border-color: rgb(255 255 255 / 14%);
+}
+
+.dark .border-white\/75 {
+  border-color: rgb(255 255 255 / 15%);
+}
+
+.dark .border-white\/80,
+.dark .border-white\/90 {
+  border-color: rgb(255 255 255 / 16%);
+}
+
+.dark .bg-neutral-100\/50,
+.dark .bg-neutral-100\/90 {
+  background-color: oklch(0.22 0.025 265 / 55%);
+}
+
+.dark .bg-neutral-200\/80 {
+  background-color: oklch(0.32 0.03 265 / 45%);
+}
+
+.dark .bg-neutral-900\/5 {
+  background-color: oklch(1 0 0 / 6%);
+}
+
+.dark .bg-neutral-900\/0 {
+  background-color: transparent;
+}
+
+.dark .group-hover\:bg-neutral-900\/5:is(:where(.group):hover *) {
+  background-color: oklch(1 0 0 / 5%);
+}
+
+/* Command palette footer */
+.dark .border-white\/60.bg-white\/25 {
+  border-color: rgb(255 255 255 / 10%);
+  background-color: rgb(255 255 255 / 5%);
+}
+
+.dark .border-white\/70.bg-white\/50 {
+  border-color: rgb(255 255 255 / 14%);
+  background-color: rgb(255 255 255 / 8%);
+}
+
+/* Timeline rail dot halo */
+.dark .shadow-\[0_0_0_4px_oklch\(0\.99_0\.004_265\)\] {
+  box-shadow: 0 0 0 4px oklch(0.16 0.025 265);
+}
+
+/* Headshot wash */
+.dark .from-white\/25 {
+  --tw-gradient-from: oklch(0.14 0.02 265 / 35%);
+}
+
+.dark .to-white\/10 {
+  --tw-gradient-to: oklch(0.14 0.02 265 / 12%);
+}
+
+/* Status chips stay readable */
+.dark .text-emerald-800 {
+  color: oklch(0.82 0.1 165);
+}
+
+.dark .text-sky-800 {
+  color: oklch(0.82 0.1 230);
+}
+
+.dark .border-emerald-200\/80 {
+  border-color: oklch(0.72 0.12 165 / 35%);
+}
+
+.dark .border-sky-200\/80 {
+  border-color: oklch(0.72 0.12 230 / 35%);
+}

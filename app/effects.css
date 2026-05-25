@@ -1,0 +1,496 @@
+/* ─── Effect design tokens (vibrant / earlier palette) ─────────────────────── */
+
+:root {
+  --cursor-x: 50vw;
+  --cursor-y: 38vh;
+
+  --fx-rainbow-1: #ff6bcb;
+  --fx-rainbow-2: #ffd166;
+  --fx-rainbow-3: #06d6a0;
+  --fx-rainbow-4: #4cc9f0;
+  --fx-rainbow-5: #7b61ff;
+  --fx-rainbow-gradient: linear-gradient(
+    115deg,
+    var(--fx-rainbow-1),
+    var(--fx-rainbow-2),
+    var(--fx-rainbow-3),
+    var(--fx-rainbow-4),
+    var(--fx-rainbow-5),
+    var(--fx-rainbow-1)
+  );
+  --fx-rainbow-size: 320% 320%;
+  --fx-rainbow-duration: 7s;
+  --fx-rainbow-width: 2px;
+  --fx-rainbow-radius: 1rem;
+  --fx-rainbow-shadow:
+    0 0 18px rgb(255 120 220 / 35%),
+    0 0 36px rgb(100 180 255 / 22%),
+    0 10px 30px rgb(0 0 0 / 18%);
+  --fx-rainbow-glow-blur: 10px;
+  --fx-rainbow-glow-opacity: 0.45;
+
+  --fx-glass-bg: rgb(255 255 255 / 72%);
+  --fx-glass-border: rgb(255 255 255 / 65%);
+  --fx-glass-blur: 18px;
+  --fx-glass-saturate: 160%;
+  --fx-glass-shadow: 0 10px 30px rgb(0 0 0 / 12%);
+  --fx-glass-highlight: inset 0 1px 0 rgb(255 255 255 / 85%),
+    inset 0 -1px 0 rgb(255 255 255 / 35%);
+  --fx-glass-radius: 1rem;
+
+  --fx-glimmer-gradient:
+    radial-gradient(circle at 20% 20%, rgb(255 255 255 / 55%), transparent 38%),
+    radial-gradient(circle at 80% 0%, rgb(255 255 255 / 35%), transparent 30%),
+    radial-gradient(circle at 55% 120%, rgb(255 255 255 / 40%), transparent 42%);
+  --fx-glimmer-opacity: 0.45;
+  --fx-glimmer-opacity-peak: 0.85;
+  --fx-glimmer-duration: 4.5s;
+
+  --fx-radial-a: oklch(0.88 0.08 250 / 45%);
+  --fx-radial-b: oklch(0.9 0.06 195 / 35%);
+  --fx-radial-c: oklch(0.92 0.05 280 / 28%);
+  --fx-radial-vignette: oklch(0.97 0.01 265 / 40%);
+
+  --fx-aurora-1: oklch(0.75 0.12 280 / 18%);
+  --fx-aurora-2: oklch(0.78 0.1 195 / 14%);
+  --fx-aurora-3: oklch(0.72 0.14 250 / 12%);
+  --fx-cursor-glow: oklch(0.65 0.14 250 / 14%);
+  --fx-grid-size: 48px;
+  --fx-particle-opacity: 0.35;
+}
+
+.dark {
+  --fx-rainbow-shadow:
+    0 0 20px rgb(255 120 220 / 28%),
+    0 0 40px rgb(100 180 255 / 18%),
+    0 12px 36px rgb(0 0 0 / 45%);
+  --fx-rainbow-glow-opacity: 0.55;
+
+  --fx-glass-bg: rgb(18 24 42 / 58%);
+  --fx-glass-border: rgb(255 255 255 / 12%);
+  --fx-glass-shadow: 0 16px 40px rgb(0 0 0 / 42%);
+  --fx-glass-highlight:
+    inset 0 1px 0 rgb(255 255 255 / 12%),
+    inset 0 -1px 0 rgb(0 0 0 / 35%);
+
+  --fx-glimmer-gradient:
+    radial-gradient(circle at 20% 20%, rgb(120 160 255 / 18%), transparent 38%),
+    radial-gradient(circle at 80% 0%, rgb(255 120 220 / 12%), transparent 30%),
+    radial-gradient(circle at 55% 120%, rgb(80 220 200 / 10%), transparent 42%);
+  --fx-glimmer-opacity: 0.35;
+  --fx-glimmer-opacity-peak: 0.65;
+
+  --fx-radial-a: oklch(0.52 0.14 250 / 22%);
+  --fx-radial-b: oklch(0.55 0.12 280 / 16%);
+  --fx-radial-c: oklch(0.62 0.12 195 / 12%);
+  --fx-radial-vignette: oklch(0.08 0.025 265 / 65%);
+
+  --fx-aurora-1: oklch(0.55 0.16 280 / 22%);
+  --fx-aurora-2: oklch(0.52 0.14 195 / 18%);
+  --fx-aurora-3: oklch(0.48 0.12 250 / 16%);
+  --fx-cursor-glow: oklch(0.62 0.14 250 / 18%);
+  --fx-grid-size: 48px;
+  --fx-particle-opacity: 0.22;
+}
+
+.dark .fx-glass--panel {
+  --fx-glass-bg: rgb(22 30 52 / 72%);
+  --fx-glass-blur: 18px;
+  box-shadow:
+    0 14px 32px rgb(0 0 0 / 38%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+}
+
+.dark .fx-glass--card {
+  --fx-glass-bg: rgb(16 22 40 / 62%);
+  --fx-glass-border: rgb(255 255 255 / 10%);
+  --fx-glass-shadow: 0 18px 44px rgb(0 0 0 / 40%);
+}
+
+.dark .fx-glass--pill {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 10%),
+    0 8px 24px rgb(0 0 0 / 32%);
+}
+
+@keyframes fx-rainbow-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fx-chip-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fx-glimmer-pulse {
+  0%,
+  100% {
+    opacity: var(--fx-glimmer-opacity);
+  }
+  50% {
+    opacity: var(--fx-glimmer-opacity-peak);
+  }
+}
+
+@layer utilities {
+  .fx-rainbow-border {
+    position: relative;
+    isolation: isolate;
+    padding: var(--fx-rainbow-width);
+    border-radius: var(--fx-rainbow-radius);
+    background: var(--fx-rainbow-gradient);
+    background-size: var(--fx-rainbow-size);
+    animation: fx-rainbow-shift var(--fx-rainbow-duration) ease-in-out infinite;
+    box-shadow: var(--fx-rainbow-shadow);
+  }
+
+  .fx-rainbow-border::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    background: inherit;
+    background-size: inherit;
+    filter: blur(var(--fx-rainbow-glow-blur));
+    opacity: var(--fx-rainbow-glow-opacity);
+    z-index: -1;
+    animation: fx-rainbow-shift var(--fx-rainbow-duration) ease-in-out infinite;
+  }
+
+  .fx-rainbow-border--pill {
+    --fx-rainbow-radius: 9999px;
+    --fx-glass-radius: 9999px;
+  }
+
+  .fx-rainbow-border--rounded {
+    --fx-rainbow-radius: 1rem;
+    --fx-glass-radius: calc(1rem - var(--fx-rainbow-width));
+  }
+
+  .fx-glass {
+    position: relative;
+    z-index: 1;
+    border-radius: var(--fx-glass-radius);
+    border: 1px solid var(--fx-glass-border);
+    background: var(--fx-glass-bg);
+    -webkit-backdrop-filter: blur(var(--fx-glass-blur))
+      saturate(var(--fx-glass-saturate));
+    backdrop-filter: blur(var(--fx-glass-blur)) saturate(var(--fx-glass-saturate));
+    box-shadow: var(--fx-glass-highlight), var(--fx-glass-shadow);
+  }
+
+  .fx-glass--pill {
+    --fx-glass-radius: 9999px;
+    border: none;
+    box-shadow: var(--fx-glass-highlight);
+  }
+
+  .fx-glass--panel {
+    --fx-glass-bg: rgb(255 255 255 / 78%);
+    --fx-glass-blur: 16px;
+    --fx-glass-saturate: 150%;
+    --fx-glass-radius: calc(1rem - var(--fx-rainbow-width, 0px));
+    box-shadow:
+      0 12px 28px rgb(0 0 0 / 14%),
+      inset 0 1px 0 rgb(255 255 255 / 90%);
+  }
+
+  .fx-glass--card {
+    --fx-glass-radius: 1.25rem;
+    --fx-glass-bg: rgb(255 255 255 / 55%);
+    --fx-glass-border: rgb(255 255 255 / 70%);
+    --fx-glass-blur: 20px;
+    --fx-glass-shadow: 0 16px 40px rgb(0 0 0 / 8%);
+  }
+
+  .fx-glimmer::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: var(--fx-rainbow-width, 0);
+    border-radius: inherit;
+    background: var(--fx-glimmer-gradient);
+    mix-blend-mode: screen;
+    opacity: var(--fx-glimmer-opacity);
+    animation: fx-glimmer-pulse var(--fx-glimmer-duration) ease-in-out infinite;
+  }
+
+  .fx-glimmer--subtle {
+    --fx-glimmer-opacity: 0.35;
+    --fx-glimmer-opacity-peak: 0.65;
+    --fx-glimmer-duration: 5s;
+  }
+
+  .fx-glass.fx-glimmer::after {
+    inset: 0;
+  }
+
+  .fx-radial-bg {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 78% 52% at 50% -18%,
+        var(--fx-radial-a),
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse 48% 38% at 88% 92%,
+        var(--fx-radial-b),
+        transparent 62%
+      ),
+      radial-gradient(
+        ellipse 40% 34% at 8% 78%,
+        var(--fx-radial-c),
+        transparent 58%
+      );
+  }
+
+  .fx-chip-float {
+    animation: fx-chip-float 4.8s ease-in-out infinite;
+  }
+
+  .fx-radial-bg--page {
+    background:
+      radial-gradient(
+        ellipse 78% 52% at 50% -18%,
+        var(--fx-radial-a),
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse 48% 38% at 88% 92%,
+        var(--fx-radial-b),
+        transparent 62%
+      ),
+      radial-gradient(
+        ellipse 40% 34% at 8% 78%,
+        var(--fx-radial-c),
+        transparent 58%
+      ),
+      radial-gradient(
+        ellipse 120% 80% at 50% 100%,
+        var(--fx-radial-vignette),
+        transparent 55%
+      );
+  }
+
+  .fx-radial-bg--futuristic {
+    opacity: 1.15;
+  }
+
+  .fx-aurora {
+    pointer-events: none;
+    position: absolute;
+    inset: -20% -10%;
+    background:
+      radial-gradient(
+        ellipse 55% 45% at 15% 20%,
+        var(--fx-aurora-1),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 50% 40% at 85% 15%,
+        var(--fx-aurora-2),
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 50% 85%,
+        var(--fx-aurora-3),
+        transparent 72%
+      );
+    filter: blur(40px);
+    animation: fx-aurora-drift 28s ease-in-out infinite;
+  }
+
+  .fx-grid-futuristic {
+    position: absolute;
+    inset: 0;
+    opacity: 0.55;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--fx-grid-size) var(--fx-grid-size);
+    mask-image: radial-gradient(
+      ellipse 90% 75% at 50% 15%,
+      black 15%,
+      transparent 72%
+    );
+  }
+
+  .dark .fx-grid-futuristic {
+    opacity: 0.4;
+  }
+
+  .fx-particles {
+    position: absolute;
+    inset: 0;
+    opacity: var(--fx-particle-opacity);
+    background-image: radial-gradient(
+      circle at center,
+      oklch(1 0 0 / 55%) 0.5px,
+      transparent 0.6px
+    );
+    background-size: 72px 72px;
+    animation: fx-particles-drift 60s linear infinite;
+    mask-image: radial-gradient(
+      ellipse 100% 80% at 50% 30%,
+      black 10%,
+      transparent 78%
+    );
+  }
+
+  .dark .fx-particles {
+    background-image: radial-gradient(
+      circle at center,
+      oklch(0.85 0.04 250 / 50%) 0.5px,
+      transparent 0.6px
+    );
+  }
+
+  .fx-cursor-glow {
+    background: radial-gradient(
+      520px circle at var(--cursor-x, 50vw) var(--cursor-y, 40vh),
+      var(--fx-cursor-glow),
+      transparent 58%
+    );
+    transition: opacity 0.35s ease;
+  }
+
+  .fx-rainbow-border--thin {
+    --fx-rainbow-width: 1px;
+    --fx-rainbow-glow-blur: 6px;
+    --fx-rainbow-glow-opacity: 0.28;
+    --fx-rainbow-shadow:
+      0 0 12px rgb(255 120 220 / 18%),
+      0 0 24px rgb(100 180 255 / 12%),
+      0 4px 20px rgb(0 0 0 / 12%);
+  }
+
+  .dark .fx-rainbow-border--thin {
+    --fx-rainbow-shadow:
+      0 0 14px rgb(255 120 220 / 14%),
+      0 0 28px rgb(100 180 255 / 10%),
+      0 6px 24px rgb(0 0 0 / 35%);
+    --fx-rainbow-glow-opacity: 0.38;
+  }
+
+  .fx-rainbow-border--nav {
+    --fx-rainbow-duration: 9s;
+  }
+
+  .fx-glass--nav {
+    --fx-glass-bg: rgb(255 255 255 / 62%);
+    --fx-glass-blur: 22px;
+    --fx-glass-saturate: 180%;
+    box-shadow:
+      var(--fx-glass-highlight),
+      0 8px 32px rgb(0 0 0 / 8%),
+      inset 0 0 0 1px rgb(255 255 255 / 25%);
+  }
+
+  .dark .fx-glass--nav {
+    --fx-glass-bg: rgb(14 20 38 / 72%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 14%),
+      0 10px 36px rgb(0 0 0 / 45%),
+      inset 0 0 0 1px rgb(255 255 255 / 8%);
+  }
+
+  .fx-nav-link-active {
+    background: rgb(255 255 255 / 55%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 70%),
+      0 1px 8px rgb(120 140 255 / 12%),
+      0 0 0 1px rgb(255 255 255 / 45%);
+  }
+
+  .dark .fx-nav-link-active {
+    background: rgb(255 255 255 / 12%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 12%),
+      0 0 20px rgb(100 160 255 / 15%),
+      0 0 0 1px rgb(255 255 255 / 14%);
+  }
+
+  .fx-hero-card {
+    box-shadow:
+      var(--fx-glass-highlight),
+      var(--fx-glass-shadow),
+      0 0 48px oklch(0.55 0.12 250 / 8%);
+  }
+
+  .dark .fx-hero-card {
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 10%),
+      0 20px 50px rgb(0 0 0 / 35%),
+      0 0 60px oklch(0.55 0.14 250 / 12%);
+  }
+}
+
+@keyframes fx-aurora-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(2%, -1.5%) scale(1.03);
+  }
+  66% {
+    transform: translate(-1.5%, 2%) scale(0.98);
+  }
+}
+
+@keyframes fx-particles-drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-72px, -72px);
+  }
+}
+
+/* Easter egg: Konami / command palette “party mode” */
+.fx-party-mode {
+  --fx-rainbow-duration: 2.5s;
+  --fx-rainbow-glow-opacity: 0.75;
+  --fx-cursor-glow: oklch(0.72 0.18 280 / 28%);
+  --fx-particle-opacity: 0.55;
+}
+
+.fx-party-mode .fx-rainbow-border::before {
+  animation-duration: 2.5s;
+}
+
+.fx-party-mode .fx-aurora {
+  animation-duration: 8s;
+}
+
+.fx-party-mode .fx-glimmer::after {
+  animation-duration: 2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-aurora,
+  .fx-particles,
+  .fx-chip-float {
+    animation: none;
+  }
+
+  .fx-party-mode .fx-rainbow-border::before,
+  .fx-party-mode .fx-aurora,
+  .fx-party-mode .fx-glimmer::after {
+    animation: none;
+  }
+}
