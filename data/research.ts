@@ -44,9 +44,9 @@ export const featuredResearch: FeaturedResearch = {
   year: 2024,
   title: "Satellite Gateway Placement using ML",
   subtitle:
-    "A Globally Generalizable and Interpretable Framework for Predicting Representative Clutter Height Using Open Geospatial Data and Machine Learning",
+    "Explainable Geospatial AI for Satellite Ground Station Siting Using LiDAR-Derived Terrain Intelligence",
   longDescription:
-    "Representative Clutter Height Modeling uses machine learning to predict local obstruction height from open geospatial data, improving on fixed ITU land-use clutter assumptions used in radio propagation and satellite ground-station planning. The project trains interpretable regression models on LiDAR-derived labels and global remote-sensing features, showing that LightGBM can predict clutter height more accurately while remaining efficient and explainable. Results include benchmark comparisons, SHAP-based feature analysis, ablation studies, and international validation to support globally deployable RF planning.",
+    "This work uses machine learning to predict local obstruction height from open geospatial data, improving on fixed ITU land-use clutter assumptions used in radio propagation and satellite ground-station planning. The project trains interpretable regression models on LiDAR-derived labels and global remote-sensing features, showing that LightGBM can predict clutter height more accurately while remaining efficient and explainable. Results include benchmark comparisons, SHAP-based feature analysis, ablation studies, and international validation to support globally deployable RF planning. This work is pending publication at IEEE CASE.",
   highlights: [
     "Built a LightGBM-based pipeline to predict representative clutter height from land-cover, terrain, demographic, thermal, and optical geospatial features",
     "Improved over the ITU-R P.452 baseline with 1.79 m MAE and R² = 0.765, reducing error by over 60%",
@@ -244,7 +244,7 @@ export const researchOutputCategories: ResearchOutputCategory[] = [
     items: [
       {
         title:
-          "Predicting Representative Clutter Height Using Open Geospatial Data and Machine Learning",
+          "Explainable Geospatial AI for Satellite Ground Station Siting Using LiDAR-Derived Terrain Intelligence (pending publication at IEEE CASE)",
         href: "/research/paper1.pdf",
       },
     ],
